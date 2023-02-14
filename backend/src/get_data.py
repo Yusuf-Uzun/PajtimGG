@@ -9,12 +9,12 @@ from backend.src.constants import LOL_API_KEY, url_of_champ_data
 
 # name = str(input())
 watcher = LolWatcher(LOL_API_KEY)
-region = 'EUW1'
-PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
+#region = 'EUW1'
+#PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
 
 logging.basicConfig()
 # id, accountId, puuid, name, profileIconId, revisionDate, summonerLevel
-def get_backend_summoner_info(summoner_name):
+def get_backend_summoner_info(summoner_name, region):
     logging.info('Getting the Summoner ÌD of {}'.format(summoner_name))
     summoner_info = watcher.summoner.by_name(region=region, summoner_name=summoner_name)
     return summoner_info
