@@ -1,0 +1,5 @@
+riotwatcher==3.2.4
+pandas==1.5.3
+numpy==1.24.2
+wheel==0.38.4
+urllib3==1.26.14
