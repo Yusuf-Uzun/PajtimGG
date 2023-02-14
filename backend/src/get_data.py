@@ -5,32 +5,33 @@ import urllib.request
 import json
 import logging
 
-from constants import LOL_API_KEY, url_of_champ_data
+from backend.src.constants import LOL_API_KEY, url_of_champ_data
 
 # name = str(input())
 watcher = LolWatcher(LOL_API_KEY)
 region = 'EUW1'
+PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
 
 logging.basicConfig()
 # id, accountId, puuid, name, profileIconId, revisionDate, summonerLevel
 def get_backend_summoner_info(summoner_name):
     logging.info('Getting the Summoner ÌD of {}'.format(summoner_name))
     summoner_info = watcher.summoner.by_name(region=region, summoner_name=summoner_name)
-    return pd.DataFrame.from_dict(summoner_info)
+    return summoner_info
 
 
 # leagueId, queueType, tier, rank, summonerId, summonerName, leaguePoints, wins, losses, veteran, inactive
 # freshBlood, hotStreak
-def get_summoner_ranked_stats(summoner_id):
-    logging.info('Getting the Summoner ranked stats of summoner_id:{}'.format(summoner_id))
-    ranked_stats = watcher.league.by_summoner(region=region, encrypted_summoner_id=summoner_id['id'])
+def get_summoner_ranked_stats(summoner_id: str):
+    logging.info('Getting the Summoner ranked stats of summoner-id:{}'.format(summoner_id))
+    ranked_stats = watcher.league.by_summoner(region=region, encrypted_summoner_id=summoner_id)
     return ranked_stats
 
 
-def get_last_match_data():
+def get_last_match_data(puuid):
     logging.info('Loading all match of player')
     all_matches = watcher.match.matchlist_by_puuid(region=region,
-                                                   puuid='-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ')
+                                                   puuid=puuid)
     logging.info('Filtering to last match')
     last_match = all_matches[0]
     match_detail = watcher.match.by_id(region, last_match)
@@ -85,3 +86,5 @@ def get_champion_by_id(champ_id):
     for value in all_champs_dict.values():
         if value == champ_id:
             return [key for key, val in all_champs_dict.items() if val == value]
+
+
