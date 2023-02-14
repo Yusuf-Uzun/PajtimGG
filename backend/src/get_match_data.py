@@ -1,34 +1,16 @@
-from riotwatcher import LolWatcher
-#import numpy as np
+# import numpy as np
 import pandas as pd
 import urllib.request
 import json
 import logging
+from backend.src.watcher import watcher
+from backend.src.constants import url_of_champ_data
 
-from backend.src.constants import LOL_API_KEY, url_of_champ_data
-
-# name = str(input())
-watcher = LolWatcher(LOL_API_KEY)
-#region = 'EUW1'
-#PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
-
-logging.basicConfig()
-# id, accountId, puuid, name, profileIconId, revisionDate, summonerLevel
-def get_backend_summoner_info(summoner_name, region):
-    logging.info('Getting the Summoner ÌD of {}'.format(summoner_name))
-    summoner_info = watcher.summoner.by_name(region=region, summoner_name=summoner_name)
-    return summoner_info
+# region = 'EUW1'
+# PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
 
 
-# leagueId, queueType, tier, rank, summonerId, summonerName, leaguePoints, wins, losses, veteran, inactive
-# freshBlood, hotStreak
-def get_summoner_ranked_stats(summoner_id: str):
-    logging.info('Getting the Summoner ranked stats of summoner-id:{}'.format(summoner_id))
-    ranked_stats = watcher.league.by_summoner(region=region, encrypted_summoner_id=summoner_id)
-    return ranked_stats
-
-
-def get_last_match_data(puuid):
+def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')
     all_matches = watcher.match.matchlist_by_puuid(region=region,
                                                    puuid=puuid)
@@ -38,14 +20,14 @@ def get_last_match_data(puuid):
     return match_detail
 
 
-def get_last_game_banned_champs():
+def get_last_game_banned_champs(puuid: str, region: str):
     logging.info('Loading all banned champs from last game')
     list_of_all_champion = all_champion_name_id_sorted()
-    last_match_detail = get_last_match_data()
+    last_match_detail = get_last_match_data(puuid=puuid, region=region)
     df_last_match_detail = pd.DataFrame.from_dict(last_match_detail)
     dict_get_ban_info_list = df_last_match_detail.loc['teams', 'info']
     banned_champs = []
-    for items in dict_get_ban_info_list: #TODO: 4 for-schleifen bissle runter kürzen
+    for items in dict_get_ban_info_list:  # TODO: 4 for-schleifen bissle runter kürzen
         for bans in items['bans']:
             for check_if_champ in list_of_all_champion.values():
                 if check_if_champ == bans['championId']:
@@ -86,5 +68,3 @@ def get_champion_by_id(champ_id):
     for value in all_champs_dict.values():
         if value == champ_id:
             return [key for key, val in all_champs_dict.items() if val == value]
-
-
