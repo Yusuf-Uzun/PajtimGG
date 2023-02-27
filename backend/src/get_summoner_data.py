@@ -19,3 +19,8 @@ def get_summoner_ranked_stats(summoner_id: str, region: str):
     logging.info('Getting the Summoner ranked stats of summoner-id:{}'.format(summoner_id))
     ranked_stats = watcher.league.by_summoner(region=region, encrypted_summoner_id=summoner_id)
     return ranked_stats
+
+def get_summoner_mastery_stats(summoner_id: str, region: str):
+    logging.info('Getting Mastery stats of summer-id:{}'.format(summoner_id))
+    mastery_stats = watcher.champion_mastery.by_summoner(region=region, encrypted_summoner_id=summoner_id)
+    return mastery_stats

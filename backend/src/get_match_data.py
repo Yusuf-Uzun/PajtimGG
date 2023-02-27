@@ -6,9 +6,6 @@ import logging
 from backend.src.watcher import watcher
 from backend.src.constants import url_of_champ_data
 
-# region = 'EUW1'
-# PUUID = '-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ'
-
 
 def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')
