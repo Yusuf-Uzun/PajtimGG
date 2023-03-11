@@ -34,3 +34,7 @@ async def get_summoner_mastery_stats(summoner_id: str, region: str = Query("regi
 @app.get("/api/get_champion_by_id/{champion_id}", tags=["Game Info"])
 async def get_champion_by_id(champion_id: int):
     return get_match_data.get_champion_by_id(champ_id=champion_id)
+
+@app.get("/api/get_last_match_participants_name/{summoner_id}", tags=["Game Info"])
+async def get_last_match_participants_name(puuid: str, region: str = Query("region", enum=["EUW1", "NA1"])):
+    return get_match_data.get_last_match_participants_name(puuid=puuid, region=region)

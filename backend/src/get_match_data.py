@@ -65,3 +65,36 @@ def get_champion_by_id(champ_id):
     for value in all_champs_dict.values():
         if value == champ_id:
             return [key for key, val in all_champs_dict.items() if val == value]
+
+
+def dragon_api_test(region: str):
+    logging.info('Testing out the features that are used in dragon_api')
+    version = watcher.data_dragon.versions_for_region(region=region)['n']['champion']
+    champ_list = watcher.data_dragon.champions(version=version, full=False, locale='en_US')
+
+    champ_dict = {}
+    for key in champ_list['data']:
+        row = champ_list['data'][key]
+        champ_dict[row['key']] = row['id']
+
+
+def get_last_match_participants(puuid: str, region: str):
+    last_match = get_last_match_data(puuid=puuid, region=region)
+    last_match_participants_puuid = {}
+    last_match_participants = {}
+    anz = 0
+    for participants in last_match['metadata']['participants']:
+        last_match_participants_puuid[anz] = participants
+        last_match_participants[anz] = watcher.summoner.by_puuid(region=region,
+                                                                 encrypted_puuid=last_match_participants_puuid[anz])
+        anz += 1
+    return last_match_participants
+
+def get_last_match_participants_name(puuid: str, region: str):
+    list_of_last_match_participants_info = get_last_match_participants(puuid=puuid, region=region)
+    last_match_participants_name = {}
+    anz = 0
+    for participants in list_of_last_match_participants_info:
+        last_match_participants_name[anz] = list_of_last_match_participants_info[participants]['name']
+        anz += 1
+    return last_match_participants_name
