@@ -79,6 +79,7 @@ def dragon_api_test(region: str):
 
 
 def get_last_match_participants(puuid: str, region: str):
+    logging.info('Loading the informations of the participants of last the last game')
     last_match = get_last_match_data(puuid=puuid, region=region)
     last_match_participants_puuid = {}
     last_match_participants = {}
@@ -90,7 +91,9 @@ def get_last_match_participants(puuid: str, region: str):
         anz += 1
     return last_match_participants
 
+
 def get_last_match_participants_name(puuid: str, region: str):
+    logging.info('Loading the names of the participants of last the last game')
     list_of_last_match_participants_info = get_last_match_participants(puuid=puuid, region=region)
     last_match_participants_name = {}
     anz = 0
@@ -98,3 +101,17 @@ def get_last_match_participants_name(puuid: str, region: str):
         last_match_participants_name[anz] = list_of_last_match_participants_info[participants]['name']
         anz += 1
     return last_match_participants_name
+
+def get_last_20_matches_info(puuid: str, region: str):
+    logging.info('Loading last 20 matches')
+    last_match_ids = watcher.match.matchlist_by_puuid(region=region, puuid=puuid)
+    all_info = {}
+    #one_info = {}
+    anz = 0
+    for match_id in last_match_ids:
+        all_info[anz] = watcher.match.by_id(region=region, match_id=match_id)
+        anz += 1
+    return all_info
+
+test = get_last_20_matches_info(region='EUW1', puuid='-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ')
+print('test')
