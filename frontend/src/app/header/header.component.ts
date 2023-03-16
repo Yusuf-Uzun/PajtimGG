@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  getSummoner(val: string){
-    console.log(`Getting Data from ${val}`)
+  getSummoner(val: string): string{
+    console.warn(val);
+    return val; 
   }
 }
 

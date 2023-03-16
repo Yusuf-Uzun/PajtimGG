@@ -35,8 +35,8 @@
 	<body>
     	<img src="assets/hamster-firstpage.png" width="500" height="300">
 		<h1>Pajtim.gg</h1>
-		<input type="text" placeholder="Summoner Name..." name="summonerName" #box (keyup)="getSummoner(box.value)">
-		<button (click)="getSummoner(box.value)">search</button>
+		<input type="text" placeholder="Summoner Name..." #box id="summonerName">
+		<button (click)="getSummoner(box.value)">Search</button>
 	</body>
 	<body style="background-color:#2c3e50;">
     	<button id="na">NA</button>
