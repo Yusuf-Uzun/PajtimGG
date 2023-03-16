@@ -3,9 +3,9 @@ import pandas as pd
 import urllib.request
 import json
 import logging
-from backend.src.watcher import watcher
-from backend.src.constants import url_of_champ_data
-from backend.src import app
+from watcher import watcher
+from constants import url_of_champ_data
+import app
 
 
 def get_last_match_data(puuid: str, region: str):

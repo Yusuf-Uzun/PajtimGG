@@ -1,7 +1,7 @@
 # import numpy as np
 # import pandas as pd
 import logging
-from backend.src.watcher import watcher
+from watcher import watcher
 
 # name = str(input())
 
