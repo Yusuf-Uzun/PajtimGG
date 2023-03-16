@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  getSummoner(val: string): string{
+  constructor(private _location: Location) {}
+  getSummoner(val: string){
     console.warn(val);
-    return val; 
+
+    const url = `EUW1/${val}`;
+
+    console.warn(url);
+
+    this._location.go(url)
+    return val;
   }
 }
 
