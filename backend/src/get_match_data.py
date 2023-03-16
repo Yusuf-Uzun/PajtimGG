@@ -5,6 +5,7 @@ import json
 import logging
 from backend.src.watcher import watcher
 from backend.src.constants import url_of_champ_data
+from backend.src import app
 
 
 def get_last_match_data(puuid: str, region: str):
@@ -67,6 +68,7 @@ def get_champion_by_id(champ_id):
             return [key for key, val in all_champs_dict.items() if val == value]
 
 
+
 def dragon_api_test(region: str):
     logging.info('Testing out the features that are used in dragon_api')
     version = watcher.data_dragon.versions_for_region(region=region)['n']['champion']
@@ -113,5 +115,3 @@ def get_last_20_matches_info(puuid: str, region: str):
         anz += 1
     return all_info
 
-test = get_last_20_matches_info(region='EUW1', puuid='-EchhfyvMfBnQaR5rRkUYqujjbgfRsdG52Aikvhlbk7DsCYJAboXIqhwHt4zIXxZz4Z1IhZfoWVWmQ')
-print('test')
