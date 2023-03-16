@@ -2,12 +2,14 @@ from fastapi import FastAPI, Query
 import get_match_data
 import get_summoner_data
 from fastapidesc import description, contract
+from flask_cors import CORS
+
 app = FastAPI(
     title='Pajtim.gg',
     description=description,
     contact=contract,
 )
-
+CORS(app)
 
 @app.get("/api/summoner-info/", tags=["Summoner Info"])
 async def get_summoner_info(summoner_name: str, region: str = Query("region", enum=["EUW1", "NA1"])):

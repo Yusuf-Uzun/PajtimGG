@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		body {
+			background-color: #2c3e50;
+			color: #2c3e50;
+		}
+		input[type=text] {
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: none;
+			margin: 20px;
+			width: 80%;
+			background-color: #222B3E;
+			color: white;
+		}
+		button {
+			background-color: #3C78D8;
+			color: white;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			font-size: 16px;
+			margin: 10px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #1E58B8;
+		}
+	</style>
+</head>
+<body>
+	<body>
+    	<img src="assets/hamster-firstpage.png" width="500" height="300">
+		<h1>Pajtim.gg</h1>
+		<input type="text" placeholder="Summoner Name..." name="summonerName" #box (keyup)="getSummoner(box.value)">
+		<button (click)="getSummoner(box.value)">search</button>
+	</body>
+	<body style="background-color:#2c3e50;">
+    	<button id="na">NA</button>
+		<button id="euw">EUW</button>
+	</body>
+</body>
+</html>
+
