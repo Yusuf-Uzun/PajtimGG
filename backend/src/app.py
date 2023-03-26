@@ -2,14 +2,23 @@ from fastapi import FastAPI, Query
 import get_match_data
 import get_summoner_data
 from fastapidesc import description, contract
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(
     title='Pajtim.gg',
     description=description,
     contact=contract,
 )
+origins = ['http://localhost:4200', 'http://api.localhost:4200']
+app.add_middleware(
+    CORSMiddleware, 
+    allow_origins = origins, 
+    allow_credentials = True, 
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-
-@app.get("/api/summoner-info/", tags=["Summoner Info"])
+@app.get("/summoners/{region}/{summoner_name}", tags=["Summoner Info"])
 async def get_summoner_info(summoner_name: str, region: str = Query("region", enum=["EUW1", "NA1"])):
     return get_summoner_data.get_backend_summoner_info(summoner_name=summoner_name, region=region)
 
