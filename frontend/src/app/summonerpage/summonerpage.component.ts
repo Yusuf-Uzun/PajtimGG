@@ -14,7 +14,7 @@ export class SummonerpageComponent implements OnInit{
   summonerLevel: any;
   constructor() {}
 
-  ngOnInit(){
+  getSummoner(){
     axios.get(this.ROOT_URL)
     .then(({data}) => this.dataInfo = data)
     .then(() => {
@@ -22,5 +22,8 @@ export class SummonerpageComponent implements OnInit{
       this.summonerLevel = this.dataInfo['1'] ;
     })
     .catch((err) => console.log(err))
+  }
+  ngOnInit(){
+    this.getSummoner
   }
 }
