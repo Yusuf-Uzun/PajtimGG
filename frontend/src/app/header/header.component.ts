@@ -7,14 +7,16 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.scss','./header.component.normalize.scss']
 })
 export class HeaderComponent {
+  region: any; 
+  summoner: any; 
+  
   constructor(private _location: Location) {}
-  getSummoner(val: string){
-    const url = `EUW1/${val}`;
+  
+  getSummoner(val: string): void{
+    this.summoner = val;
 
-    this._location.go(url)
-    
-    return val;
   }
+
 }
 
 

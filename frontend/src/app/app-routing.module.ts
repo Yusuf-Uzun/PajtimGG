@@ -5,7 +5,7 @@ import { SummonerpageComponent } from './summonerpage/summonerpage.component';
 
 const routes: Routes = [
   {path:'', component:HeaderComponent},
-  {path:'EUW1/Yusi', component:SummonerpageComponent}
+  {path:'/summoners/EUW1/Yusi', component:SummonerpageComponent}
 ];
 
 @NgModule({
