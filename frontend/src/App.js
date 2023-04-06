@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import './App.normalize.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <div>
+      <div className="img">
+        <img src="/frontend/src/assets/PajtimGGBanner3.png" width="708mm" height="252mm" alt="Pajtim GG Banner"/>
+      </div>
+
+      <div className="bar">
+        <input type="text" placeholder="Summoner Name..." id="summonerName" />
+      </div>
+
+      <div className="Search">
+        <a href="summoners/EUW1/Yusi" className="active">
+          <button onClick={getSummoner}>Search</button>
         </a>
-      </header>
+        <button id="na">NA</button>
+        <button id="euw">EUW</button>
+      </div>
+
+      <div className="img2">
+        <a href="localhost:4200">
+          <img src="assets/PajtimGG2.png" width="100px" height="25px" alt="Pajtim GG" />
+        </a>
+      </div>
+
+      <div className="impressum">
+      </div>
     </div>
   );
+}
+
+function getSummoner() {
+  // Implementation for getSummoner function
 }
 
 export default App;

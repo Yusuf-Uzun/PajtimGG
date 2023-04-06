@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="header.component.css">
+	<link rel="stylesheet" href="header.component.normalize.css">
+</head>
+<body>
+	<div class="img">
+    	<img src="/frontend/src/assets/PajtimGGBanner3.png" width="708mm" height="252mm">
+	</div>
+
+	<div class="bar">
+		<input type="text" placeholder="Summoner Name..." #box id="summonerName">
+	</div>
+
+	<div class="Search">
+		<a routerLink="summoners/EUW1/Yusi" routingLinkActive="active"><button (click)="getSummoner()">Search</button></a>
+    	<button id="na">NA</button>
+		<button id="euw">EUW</button>
+	</div>
+
+	<div class="img2">
+    	<a href="localhost:4200"><img src="assets/PajtimGG2.png" width="100px" height="25px"></a>
+	</div>
+
+	<div class="impressum">
+	</div>
+
+</body>
+</html>
