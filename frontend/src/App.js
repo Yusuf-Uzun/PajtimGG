@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <div className="img">
-        <img src="/frontend/src/assets/PajtimGGBanner3.png" width="708mm" height="252mm" alt="Pajtim GG Banner"/>
+        <img src="./assets/PajtimGGBanner3.png" width="708mm" height="252mm" alt="Pajtim GG Banner"/>
       </div>
 
       <div className="bar">
@@ -23,7 +23,7 @@ function App() {
 
       <div className="img2">
         <a href="localhost:4200">
-          <img src="assets/PajtimGG2.png" width="100px" height="25px" alt="Pajtim GG" />
+          <img src="./assets/PajtimGG2.png" width="100px" height="25px" alt="Pajtim GG" />
         </a>
       </div>
 
