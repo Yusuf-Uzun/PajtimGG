@@ -24,7 +24,7 @@ function App() {
       </div>
 
       <div className="img2">
-        <a href="localhost:4200">
+        <a href="http://localhost:3001">
           <img src={require("./assets/PajtimGG2.png")} width="100px" height="25px" alt="Pajtim GG" />
         </a>
       </div>
