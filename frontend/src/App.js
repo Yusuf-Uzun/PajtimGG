@@ -36,6 +36,7 @@ function App() {
 }
 
 function getSummoner() {
+  console.log('test')
   
   // Implementation for getSummoner function
 }
