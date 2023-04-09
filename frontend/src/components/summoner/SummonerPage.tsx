@@ -2,7 +2,12 @@ import axios from "axios";
 //import { summonerNameDTO, regionDTO } from '../fpage/seachForSummoner'
 
 function SummonerPage(){
-    return <h1>Summoner Page</h1>;
+    return(
+        <div>
+            <h1>Summoner Page</h1>
+        </div>
+    )
+
 
     function getSummonerData(){}
 }

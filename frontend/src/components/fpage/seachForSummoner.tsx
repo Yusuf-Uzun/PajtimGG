@@ -77,7 +77,9 @@ function searchForSummoner() {
                 />
             </div>
             <div className="Search">
-            <a href={`http://localhost:${FRONTEND_PORT}/summoner/${SummonerName}/${selectedRegion}`}><Button variant="contained" onClick={() => findSummoner(SummonerName)}>Search</Button></a>
+            <a href={`http://localhost:${FRONTEND_PORT}/#/summoners/${selectedRegion}/${SummonerName}`}>
+                <Button variant="contained" onClick={() => findSummoner(SummonerName)}>Search</Button>
+            </a>
                 <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="chooseRegion">Region</InputLabel>
                 <Select
@@ -94,6 +96,11 @@ function searchForSummoner() {
                     <MenuItem value={"NA"}>NA</MenuItem>
                  </Select>
                 </FormControl>
+            </div>
+            <div>
+                <a href="http://localhost:5173/">
+                    <img src="PajtimGG2.png" height={"20px"} width={"80px"}></img>
+                </a>
             </div>
         </div>
     );
