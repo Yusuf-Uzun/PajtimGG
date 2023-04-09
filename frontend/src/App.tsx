@@ -1,16 +1,11 @@
 import './App.normalize.css'
-import FPage from './components/fpage/FPage'
-import GetSummonerName from './components/fpage/seachForSummoner';
+import HomePage from './components/fpage/HomePage';
+
 
 function App() {
   return (
     <div>
-      <head>
-        <div className='Head'><FPage /></div>
-      </head>
-      <body>
-        <div className='Body'><GetSummonerName /></div>
-      </body>
+      <HomePage />
     </div>
   );
 }
