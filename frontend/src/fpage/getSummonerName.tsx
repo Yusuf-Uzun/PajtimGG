@@ -21,7 +21,7 @@ function GetSummonerName(){
     }
     return(
         <div className="Container">
-            <div>TEST</div>
+            <div>TEST1234</div>
         <div className="TextBox">
             <input type={"text"} placeholder="Summoner Name..." onChange={e => SetSummonerName(e.target.value)} value={SummonerName}/>
         </div>
