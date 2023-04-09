@@ -9,7 +9,7 @@ Python, Uvicorn with FastAPI, LolWatcher
 ### Frontend
 Vite, React, TypeScript, EsLint, Prettier, CSS, MUI, Axios
 
-## How to setup Pajtim.gg
+## How to setup PajtimGG
 ### Setting up the Backend 
 ```
   cd backend 
@@ -23,7 +23,7 @@ Vite, React, TypeScript, EsLint, Prettier, CSS, MUI, Axios
   npm i (or npm install) / yarn install
 ```
 
-## How to run Pajtim.gg 
+## How to run PajtimGG
 ### Run the Backend
 --> Run the module main.py (Soon will be updated) 
 
