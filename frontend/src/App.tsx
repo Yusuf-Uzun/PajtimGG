@@ -1,6 +1,6 @@
 import './App.normalize.css'
 import FPage from './components/fpage/FPage'
-import GetSummonerName from './components/fpage/getSummonerName';
+import GetSummonerName from './components/fpage/seachForSummoner';
 
 function App() {
   return (
