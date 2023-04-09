@@ -5,9 +5,31 @@ import './index.css'
 import {
   createBrowserRouter, 
   RouterProvider,
+  useSearchParams,
 } from "react-router-dom";
 import HomePage from './components/fpage/HomePage';
 import SummonerPage from './components/summoner/SummonerPage';
+import { Console } from 'console';
+
+const regexPath: RegExp = /^\/summoner\/[A-Za-z0-9]+$/;
+
+let sumPath = ""
+interface AccessSumNameProps {
+  propsSummoner: string;
+  propsRegion: string;
+}
+
+function AccessSumName(props: AccessSumNameProps) {
+  const { propsSummoner, propsRegion } = props;
+
+  sumPath = `/summoner/${propsSummoner}/${propsRegion}`;
+  
+  console.log(sumPath)
+  return (
+    <div></div>
+  )
+}
+export default AccessSumName;
 
 const router = createBrowserRouter([
   {
@@ -15,7 +37,7 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
-    path: "/summoner",
+    path: sumPath,
     element: <SummonerPage />
   },
 ])

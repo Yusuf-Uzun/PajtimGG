@@ -1,5 +1,6 @@
 import axios from "axios";
 import { 
+    useEffect,
     useState, 
 } from "react";
 import './index.css'
@@ -13,9 +14,8 @@ import {
     SelectChangeEvent,
 } from '@mui/material';
 
-let dataInfo: any;
-let summonerID: any;
-let summonerLevel: any;
+let summonerNameDTO = "";
+let regionDTO = "";
 
 function searchForSummoner() {
     const [SummonerName, SetSummonerName] = useState('');
@@ -52,9 +52,11 @@ function searchForSummoner() {
         }
     }
 
-    function findSummoner(name: string) {
+    function findSummoner(name: string): void {
         if (InputIsCorrect(SummonerName, selectedRegion)) {
             console.log(BACKEND_URI());
+            summonerNameDTO += SummonerName;
+            regionDTO += selectedRegion;
         }
     }
 
@@ -75,7 +77,7 @@ function searchForSummoner() {
                 />
             </div>
             <div className="Search">
-                <a href={`http://localhost:${FRONTEND_PORT}/summoner`}><Button variant="contained" onClick={() => findSummoner(SummonerName)}>Search</Button></a>
+            <a href={`http://localhost:${FRONTEND_PORT}/summoner/${SummonerName}/${selectedRegion}`}><Button variant="contained" onClick={() => findSummoner(SummonerName)}>Search</Button></a>
                 <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="chooseRegion">Region</InputLabel>
                 <Select
