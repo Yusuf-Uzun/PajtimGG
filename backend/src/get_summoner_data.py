@@ -1,5 +1,5 @@
 # import numpy as np
-# import pandas as pd
+import pandas as pd
 import logging
 from watcher import watcher
 
@@ -24,3 +24,14 @@ def get_summoner_mastery_stats(summoner_id: str, region: str):
     logging.info('Getting Mastery stats of summer-id:{}'.format(summoner_id))
     mastery_stats = watcher.champion_mastery.by_summoner(region=region, encrypted_summoner_id=summoner_id)
     return mastery_stats
+
+def summoner_stats_automatized(summoner_name, region):
+    test = get_backend_summoner_info(summoner_name, region)
+    test1 = get_summoner_mastery_stats(summoner_id=test['id'], region= region)
+    test2 = get_summoner_ranked_stats(summoner_id=test['id'], region=region)
+
+    return test, test1, test2
+
+test = summoner_stats_automatized(summoner_name='Yusi', region='EUW1')
+
+print('hello world')

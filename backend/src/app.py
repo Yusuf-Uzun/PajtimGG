@@ -19,7 +19,8 @@ app.add_middleware(
 
 @app.get("/summoners/{region}/{summoner_name}", tags=["Summoner Info"])
 async def get_summoner_info(summoner_name: str, region: str = Query("region", enum=["EUW1", "NA1"])):
-    return get_summoner_data.get_backend_summoner_info(summoner_name=summoner_name, region=region)
+    #return get_summoner_data.get_backend_summoner_info(summoner_name=summoner_name, region=region)
+    return get_summoner_data.summoner_stats_automatized(summoner_name=summoner_name, region=region)
 
 
 @app.get("/api/summoner-ranked-stats/{summoner_id}", tags=["Summoner Info"])
