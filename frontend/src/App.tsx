@@ -14,7 +14,6 @@ import React from 'react';
 
 
 function App() {
-  const LazyComponent = lazy(() => import("./components/summoner/UserSummonerPage"))
   return (
     <div>
       <Routes>
