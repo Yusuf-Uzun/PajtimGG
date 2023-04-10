@@ -4,5 +4,28 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+
+.animation{
+  animation: zoom move 1s;
+}
+
+@keyframes zoom {
+  0% {
+      transform:scale(200%);
   }
-  
+  100%{
+      transform:scale(100%);
+  }
+}
+
+#SummonerData {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.root {
+  justify-content: left;
+}

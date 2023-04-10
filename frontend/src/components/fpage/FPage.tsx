@@ -1,6 +1,4 @@
 import './index.css';
-//mport './test.css';
-import { useState } from 'react';
 
 function FPage(){
   return (

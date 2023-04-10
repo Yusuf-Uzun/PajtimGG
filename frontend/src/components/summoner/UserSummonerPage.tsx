@@ -1,9 +1,7 @@
-import { Await, useLoaderData, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './spage.css';
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { profile } from 'console';
-
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function UserSummonerPage(){
     const { region, summonerName } = useParams();
@@ -33,7 +31,7 @@ function UserSummonerPage(){
     }
     return (
         <div>
-            <div>   
+            <div id='SummonerData'>   
                 <h5>summoner: {summonerName}</h5>
                 <h5>level: {level}</h5>
                 <h5>iconid: {profileIcon}</h5>
@@ -41,7 +39,7 @@ function UserSummonerPage(){
                 <h5>elo: {elo}</h5>
                 <h5>{winrate}</h5>
             </div>
-            <div>
+            <div className='img'>
                 <a href="http://localhost:5173/">
                     <img src="PajtimGG2.png" height={"20px"} width={"80px"}></img>
                 </a>
