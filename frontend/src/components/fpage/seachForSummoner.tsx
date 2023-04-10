@@ -30,10 +30,6 @@ function searchForSummoner() {
         return str === null || str.match(/^ *$/) !== null;
     }
 
-    const BACKEND_URI: () => string = () => {
-        return `http://localhost:${BACKEND_PORT}/${selectedRegion}/${SummonerName}`;
-    }
-
     function InputIsCorrect(SummonerName: string, selectedRegion: string): boolean {
         if (isEmptyOrSpaces(SummonerName) && selectedRegion === ''){
             alert('Choose a region and your Summoner Name');
@@ -54,7 +50,6 @@ function searchForSummoner() {
 
     function findSummoner(name: string): void {
         if (InputIsCorrect(SummonerName, selectedRegion)) {
-            console.log(BACKEND_URI());
             summonerNameDTO += SummonerName;
             regionDTO += selectedRegion;
         }
@@ -69,7 +64,7 @@ function searchForSummoner() {
             <div className="TextBox">
                 <TextField
                     id="summonerSearchBox"
-                    label="Search field"
+                    label="Summoner Name"
                     type="search"
                     variant="standard"
                     onChange={e => SetSummonerName(e.target.value)} 

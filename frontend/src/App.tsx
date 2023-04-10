@@ -8,10 +8,13 @@ import './App.normalize.css'
 import HomePage from './components/fpage/HomePage';
 import SummonerPage from './components/summoner/SummonerPage';
 import UserSummonerPage from './components/summoner/UserSummonerPage';
+import { lazy } from 'react'
+import React from 'react';
 
 
 
 function App() {
+  const LazyComponent = lazy(() => import("./components/summoner/UserSummonerPage"))
   return (
     <div>
       <Routes>
