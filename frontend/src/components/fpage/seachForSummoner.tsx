@@ -18,9 +18,6 @@ function searchForSummoner() {
     const [selectedRegion, setSelectedRegion] = useState('');
 
     const FRONTEND_PORT = "5173";
-    console.log(SummonerName);
-    console.log(selectedRegion);
-
     function isEmptyOrSpaces(str: string): boolean{
         return str === null || str.match(/^ *$/) !== null;
     }

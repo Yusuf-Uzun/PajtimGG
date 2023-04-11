@@ -33,5 +33,3 @@ def summoner_stats_automatized(summoner_name, region):
     return test, test1, test2
 
 test = summoner_stats_automatized(summoner_name='Yusi', region='EUW1')
-
-print('hello world')
