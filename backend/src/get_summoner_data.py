@@ -26,10 +26,10 @@ def get_summoner_mastery_stats(summoner_id: str, region: str):
     return mastery_stats
 
 def summoner_stats_automatized(summoner_name, region):
-    test = get_backend_summoner_info(summoner_name, region)
-    test1 = get_summoner_mastery_stats(summoner_id=test['id'], region= region)
-    test2 = get_summoner_ranked_stats(summoner_id=test['id'], region=region)
+    summoner_info = get_backend_summoner_info(summoner_name, region)
+    summoner_mastery_stats = get_summoner_mastery_stats(summoner_id=summoner_info['id'], region= region)
+    summoner_mastery_stats = summoner_mastery_stats[0:9]
+    summoner_ranked_stats = get_summoner_ranked_stats(summoner_id=summoner_info['id'], region=region)
 
-    return test, test1, test2
+    return {'sum_info': summoner_info, 'sum_mastery_stats': summoner_mastery_stats, 'sum_ranked_stats': summoner_ranked_stats}
 
-test = summoner_stats_automatized(summoner_name='Yusi', region='EUW1')
