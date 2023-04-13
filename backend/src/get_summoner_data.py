@@ -2,6 +2,7 @@
 import pandas as pd
 import logging
 from watcher import watcher
+from get_match_data import get_champion_by_id
 
 # name = str(input())
 
@@ -28,8 +29,13 @@ def get_summoner_mastery_stats(summoner_id: str, region: str):
 def summoner_stats_automatized(summoner_name, region):
     summoner_info = get_backend_summoner_info(summoner_name, region)
     summoner_mastery_stats = get_summoner_mastery_stats(summoner_id=summoner_info['id'], region= region)
-    summoner_mastery_stats = summoner_mastery_stats[0:9]
+    summoner_mastery_stats = summoner_mastery_stats[0:5]
+    top_5_champs = []
+    top_5_mastery_points = []
+    for champion in summoner_mastery_stats:
+        top_5_champs.append(get_champion_by_id(champion['championId']))
+        top_5_mastery_points.append(champion['championPoints'])
     summoner_ranked_stats = get_summoner_ranked_stats(summoner_id=summoner_info['id'], region=region)
 
-    return {'sum_info': summoner_info, 'sum_mastery_stats': summoner_mastery_stats, 'sum_ranked_stats': summoner_ranked_stats}
+    return {'sum_info': summoner_info, 'best_champs': top_5_champs, 'mastery_points': top_5_mastery_points, 'sum_ranked_stats': summoner_ranked_stats}
 
