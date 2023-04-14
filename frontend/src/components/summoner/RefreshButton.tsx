@@ -4,7 +4,7 @@ function RefreshButton(){
 
     return (
         <div>
-            <Button variant="contained" onClick={() => window.location.reload()}>Refresh</Button>
+            <Button style={{maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px'}} variant="contained" onClick={() => window.location.reload()}>Refresh</Button>
         </div>
     )
 }

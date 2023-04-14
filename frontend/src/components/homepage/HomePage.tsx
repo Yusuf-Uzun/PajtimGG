@@ -3,16 +3,16 @@ import GetSummonerName from './seachForSummoner';
 
 function HomePage() {
   return (
-    <div>
+    <html>
       <head>
-        <div className='Head'><FPage /></div>
       </head>
       <body>
+        <div className='Head'><FPage /></div>
         <div className='Body'>
           <GetSummonerName />
           </div>
       </body>
-    </div>
+    </html>
   );
 }
 
