@@ -21,7 +21,7 @@ function UserSummonerPage(){
     const [champAndMastery, SetChampAndMastery] = useState({});
 
 
-    const BACKEND_PORT = "6969";
+    const BACKEND_PORT = "3888";
     const BACKEND_SUMMONER_INFO_URI = `http://localhost:${BACKEND_PORT}/summoners/${region}/${summonerName}`
     
     useEffect(() => {
@@ -43,7 +43,6 @@ function UserSummonerPage(){
                 }
                 let helpBestChamp: ChampType[] = [];
                 let helpMasteryPoints: MasteryType[] = [];
-                let bestChampImg = [];
                 for(let i = 0; i < res.data['best_champs'].length; i++){
                     helpBestChamp.push(res.data['best_champs'][i]);
                     helpMasteryPoints.push(res.data['mastery_points'][i]);
@@ -99,7 +98,14 @@ function UserSummonerPage(){
                     <p> <img 
                     src={`championIcons/${champion}.png`}
                     title={`${champion}`}
-                    alt={`${champion}`} />{`${masteryPoints}`}</p>))}
+                    alt={`${champion}`} />
+                    <h5>
+                        {champion}
+                    </h5>
+                    <h5>
+                        {`Mastery Points: ${masteryPoints}`}
+                    </h5>
+                    </p>))}
                 </div>
                 <Logo />
                 </div>

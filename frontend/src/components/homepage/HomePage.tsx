@@ -8,7 +8,9 @@ function HomePage() {
         <div className='Head'><FPage /></div>
       </head>
       <body>
-        <div className='Body'><GetSummonerName /></div>
+        <div className='Body'>
+          <GetSummonerName />
+          </div>
       </body>
     </div>
   );
