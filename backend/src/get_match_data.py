@@ -15,7 +15,12 @@ def get_last_match_data(puuid: str, region: str):
     logging.info('Filtering to last match')
     last_match = all_matches[0]
     match_detail = watcher.match.by_id(region, last_match)
-    return match_detail
+    participants = {}
+    anz = 0
+    for summoner in match_detail['metadata']['participants']:
+        participants[anz] = get_last_match_participants_name(puuid=summoner, region=region)
+        anz += 1
+    return {"summoner": participants}
 
 
 def get_last_game_banned_champs(puuid: str, region: str):
@@ -111,7 +116,7 @@ def get_last_20_matches_info(puuid: str, region: str):
     #one_info = {}
     anz = 0
     for match_id in last_match_ids:
-        all_info[anz] = watcher.match.by_id(region=region, match_id=match_id)
+        all_info[anz] = watcher.match.by_id(region=region, match_id=match_id)['info']
         anz += 1
     return all_info
 
