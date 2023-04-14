@@ -119,4 +119,3 @@ def get_last_20_matches_info(puuid: str, region: str):
         all_info[anz] = watcher.match.by_id(region=region, match_id=match_id)['info']
         anz += 1
     return all_info
-

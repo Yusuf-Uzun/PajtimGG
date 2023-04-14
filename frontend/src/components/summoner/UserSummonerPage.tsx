@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import './spage.css';
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Logo from './Logo';
+import RefreshButton from './RefreshButton';
 
 type ChampType = string;
 type MasteryType = number;
@@ -18,8 +19,6 @@ function UserSummonerPage(){
     const [elo, SetElo] = useState('');
     const [winrate, SetWinrate] = useState('');
     const [champAndMastery, SetChampAndMastery] = useState({});
-    const [puuid, SetPuuid] = useState('');
-
 
 
     const BACKEND_PORT = "6969";
@@ -28,14 +27,13 @@ function UserSummonerPage(){
     useEffect(() => {
         getUser();
     }, [])
-    //let champAndMastery: [ChampType, MasteryType][] = [];
     const getUser = () => {
         axios.get(BACKEND_SUMMONER_INFO_URI)
             .then(res => {
                 SetLevel(res.data['sum_info'].summonerLevel);
                 SetProfileIcon(`profileIcons/${res.data['sum_info'].profileIconId}.png`);
-                SetPuuid(res.data['sum_info']['puuid']);
-
+                
+                
                 if (res.data['2'] === 1){ // TODO: edit logic 
                     getRankedElo(res, 0)
                 } 
@@ -45,6 +43,7 @@ function UserSummonerPage(){
                 }
                 let helpBestChamp: ChampType[] = [];
                 let helpMasteryPoints: MasteryType[] = [];
+                let bestChampImg = [];
                 for(let i = 0; i < res.data['best_champs'].length; i++){
                     helpBestChamp.push(res.data['best_champs'][i]);
                     helpMasteryPoints.push(res.data['mastery_points'][i]);
@@ -53,8 +52,11 @@ function UserSummonerPage(){
                     acc[curr] = helpMasteryPoints[index];
                     return acc;
                   }, {}));
+                console.log(res.data['sum_info'].puuid);
+                //getLastGame(res.data['sum_info'].puuid, region, BACKEND_PORT);
                 })
         }
+    
 
     function getFlexElo(res: any){
         let flexRank: string = res.data['sum_ranked_stats']['0']['tier']
@@ -82,16 +84,22 @@ function UserSummonerPage(){
 
     return (
         <div>
+            <div>
+                <RefreshButton />
+            </div>
             <div id='SummonerData'>   
                 <h5>summoner: {summonerName}</h5>
                 <h5>level: {level}</h5>
                 <img src={profileIcon} width={200} height={200}/>
-                <h5>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></h5>
+                <h5>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></h5>  
                 <h5>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></h5>
 
                 <div> <h3>most played champions with mastery points:</h3>
                     {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
-                    <p>{`${champion}: ${masteryPoints}`}</p>))}
+                    <p> <img 
+                    src={`championIcons/${champion}.png`}
+                    title={`${champion}`}
+                    alt={`${champion}`} />{`${masteryPoints}`}</p>))}
                 </div>
                 <Logo />
                 </div>

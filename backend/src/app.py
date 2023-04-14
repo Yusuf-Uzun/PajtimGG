@@ -35,3 +35,7 @@ async def get_last_match_data(puuid: str, region: str = Query("region", enum=["E
 @app.get("/api/get_summoner_mastery_stats/{summoner_id}", tags=["Summoner Info"])
 async def get_summoner_mastery_stats(summoner_id: str, region: str = Query("region", enum=["EUW1", "NA1"])):
     return get_summoner_data.get_summoner_mastery_stats(summoner_id=summoner_id, region=region)
+
+@app.get("/api/get_summoner_rank/{region}/{summoner_name}", tags=["Summoner Info"])
+async def get_summoner_rank(summoner_name: str, region: str):
+    return get_summoner_data.get_summoner_rank(summoner_name=summoner_name, region=region)  
