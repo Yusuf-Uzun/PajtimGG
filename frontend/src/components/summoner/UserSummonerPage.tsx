@@ -86,29 +86,31 @@ function UserSummonerPage(){
             <div>
                 <RefreshButton />
             </div>
-            <div id='SummonerData'>   
-                <h5>summoner: {summonerName}</h5>
-                <h5>level: {level}</h5>
-                <img src={profileIcon} width={200} height={200}/>
-                <h5>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></h5>  
-                <h5>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></h5>
+            <div className='SummonerData, container'>   
+                <h1>Summoner: <b className='important'>{summonerName}</b></h1>
+                <div>Level: {level}</div>
+                <div className='pb'>
+                    <img src={profileIcon} width={100} height={100}/>
+                </div>
+                <div>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></div>  
+                <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
 
                 <div> <h3>most played champions with mastery points:</h3>
-                    {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
-                    <p> <img 
-                    src={`championIcons/${champion}.png`}
-                    title={`${champion}`}
-                    alt={`${champion}`} />
-                    <h5>
-                        {champion}
-                    </h5>
-                    <h5>
+                        {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
+                        <p> <img 
+                        src={`championIcons/${champion}.png`}
+                        title={`${champion}`}
+                        alt={`${champion}`} />
+                        <h5>
+                            {champion}
+                        </h5>
+                        <h5>
                         {`Mastery Points: ${masteryPoints}`}
                     </h5>
                     </p>))}
                 </div>
                 <Logo />
-                </div>
+            </div>
         </div>
     );
 }

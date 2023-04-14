@@ -17,7 +17,7 @@ function searchForSummoner() {
     const [SummonerName, SetSummonerName] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
 
-    const FRONTEND_PORT = "5174";
+    const FRONTEND_PORT = "5173";
     function isEmptyOrSpaces(str: string): boolean{
         return str === null || str.match(/^ *$/) !== null;
     }
@@ -78,7 +78,7 @@ function searchForSummoner() {
                 </FormControl>
             </div>
             <div>
-                <a href="http://localhost:5174/">
+                <a href="http://localhost:5173/">
                     <img src="PajtimGG2.png" height={"20px"} width={"80px"}></img>
                 </a>
             </div>

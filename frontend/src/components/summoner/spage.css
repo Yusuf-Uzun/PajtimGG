@@ -4,7 +4,10 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+
 }
+
 
 
 .animation{
@@ -20,12 +23,43 @@ html {
   }
 }
 
-#SummonerData {
+.SummonerData {
   display: flex;
   flex-direction: column;
   justify-content: left;
+  align-items: left;
 }
 
 .root {
   justify-content: left;
+}
+
+.container {
+  /*background-color:rgba(44, 70, 114, 0.3);*/
+  /*background-color:rgba(36, 50, 74, 0.3);*/
+  background-color:rgba(128, 128, 128, 0.3);
+  opacity: 100%;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+.pb {
+  width: 100px;
+  height: 100px;
+  justify-content: right;
+
+}
+
+h5 {
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+.important {
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+h1 {
+  font-weight: 100;
 }
