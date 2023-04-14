@@ -78,7 +78,7 @@ function searchForSummoner() {
                 </FormControl>
             </div>
             <div>
-                <a href="http://localhost:5173/">
+                <a href="http://localhost:5174/">
                     <img src="PajtimGG2.png" height={"20px"} width={"80px"}></img>
                 </a>
             </div>
