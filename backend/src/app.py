@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Query
 import get_match_data
 import get_summoner_data
+import get_champions_data
 from fastapidesc import description, contract
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -39,3 +40,7 @@ async def get_summoner_mastery_stats(summoner_id: str, region: str = Query("regi
 @app.get("/api/get_summoner_rank/{region}/{summoner_name}", tags=["Summoner Info"])
 async def get_summoner_rank(summoner_name: str, region: str):
     return get_summoner_data.get_summoner_rank(summoner_name=summoner_name, region=region)  
+
+@app.get("/api/champions", tags=['Champion Data'])
+async def get_all_champions():
+    return get_champions_data.get_all_champions()
