@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Logo from './Logo';
 import RefreshButton from './RefreshButton';
+import { Parallax } from 'react-parallax';
 
 type ChampType = string;
 type MasteryType = number;
@@ -19,6 +20,9 @@ function UserSummonerPage(){
     const [elo, SetElo] = useState('');
     const [winrate, SetWinrate] = useState('');
     const [champAndMastery, SetChampAndMastery] = useState({});
+
+    const [bestChamp, SetBestChamp] = useState<ChampType[]>([]);
+    const [masteryPoints, SetMasteryPoints] = useState<MasteryType[]>([]);
 
 
     const BACKEND_PORT = "3888";
@@ -47,11 +51,16 @@ function UserSummonerPage(){
                     helpBestChamp.push(res.data['best_champs'][i]);
                     helpMasteryPoints.push(res.data['mastery_points'][i]);
                 }
+                /*
                 SetChampAndMastery(() => helpBestChamp.reduce((acc: any, curr, index) => {
                     acc[curr] = helpMasteryPoints[index];
                     return acc;
                   }, {}));
-                console.log(res.data['sum_info'].puuid);
+                */
+
+                  SetBestChamp(helpBestChamp);
+                  SetMasteryPoints(helpMasteryPoints);
+                  console.log(res.data['sum_info'].puuid);
                 //getLastGame(res.data['sum_info'].puuid, region, BACKEND_PORT);
                 })
         }
@@ -83,34 +92,46 @@ function UserSummonerPage(){
 
     return (
         <div>
-            <div>
-                <RefreshButton />
-            </div>
-            <div className='SummonerData, container'>   
-                <h1>Summoner: <b className='important'>{summonerName}</b></h1>
-                <div>Level: {level}</div>
-                <div className='pb'>
-                    <img src={profileIcon} width={100} height={100}/>
+            <Parallax strength={800} className='SummonerData, container'>
+                <div>
+                    <RefreshButton />
                 </div>
-                <div>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></div>  
-                <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
+                <div>   
+                    <h1>Summoner: <b className='important'>{summonerName}</b></h1>
+                    <div>Level: {level}</div>
+                    <div className='pb'>
+                        <img src={profileIcon} width={100} height={100}/>
+                    </div>
+                    <div>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></div>  
+                    <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
+                </div>
+            </Parallax>
+            <Parallax className='image' bgImage={`splash/${bestChamp[0]}_0.jpg`} strength={800}>
+                <div className='content'>
+                    <span className='champ-name'>{bestChamp[0]}</span>
+                </div>
+            </Parallax>
+            <Parallax className='image' bgImage={`splash/${bestChamp[1]}_0.jpg`} strength={800}>
+                <div className='content'>
+                    <span className='champ-name'>{bestChamp[1]}</span>
+                </div>
+            </Parallax>
+            <Parallax className='image' bgImage={`splash/${bestChamp[2]}_0.jpg`} strength={800}>
+                <div className='content'>
+                    <span className='champ-name'>{bestChamp[2]}</span>
+                </div>
+            </Parallax>
+            <Parallax className='image' bgImage={`splash/${bestChamp[3]}_0.jpg`} strength={800}>
+                <div className='content'>
+                    <span className='champ-name'>{bestChamp[3]}</span>
+                </div>
+            </Parallax>
+            <Parallax className='image' bgImage={`splash/${bestChamp[4]}_0.jpg`} strength={800}>
+                <div className='content'>
+                    <span className='champ-name'>{bestChamp[4]}</span>
+                </div>
+            </Parallax>
 
-                <div> <h3>most played champions with mastery points:</h3>
-                        {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
-                        <p> <img 
-                        src={`championIcons/${champion}.png`}
-                        title={`${champion}`}
-                        alt={`${champion}`} />
-                        <h5>
-                            {champion}
-                        </h5>
-                        <h5>
-                        {`Mastery Points: ${masteryPoints}`}
-                    </h5>
-                    </p>))}
-                </div>
-                <Logo />
-            </div>
         </div>
     );
 }

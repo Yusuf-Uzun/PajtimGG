@@ -28,10 +28,13 @@ html {
   flex-direction: column;
   justify-content: left;
   align-items: left;
+  height: 120vh;
+  width: 100%;
 }
 
 .root {
   justify-content: left;
+  size: 100%;
 }
 
 .container {
@@ -62,4 +65,29 @@ h5 {
 
 h1 {
   font-weight: 100;
+}
+
+.image {
+  position: relative;
+  height: 100vh;
+  width: 200vh;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 120vh;
+  width: 100%;
+}
+
+.content span.champ-name {
+  font-size: '.8em';
+  background-color: rgba(128, 128, 128, 0.3);
+  text-transform: uppercase;
+  color: #fff;
+  padding: 1rem; 
+  font-size: 1.5rem;
+  letter-spacing: 10px;
 }
