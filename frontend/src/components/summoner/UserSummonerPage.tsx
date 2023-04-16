@@ -21,9 +21,6 @@ function UserSummonerPage(){
     const [winrate, SetWinrate] = useState('');
     const [champAndMastery, SetChampAndMastery] = useState({});
 
-    const [bestChamp, SetBestChamp] = useState<ChampType[]>([]);
-    const [masteryPoints, SetMasteryPoints] = useState<MasteryType[]>([]);
-
 
     const BACKEND_PORT = "3888";
     const BACKEND_SUMMONER_INFO_URI = `http://localhost:${BACKEND_PORT}/summoners/${region}/${summonerName}`
@@ -34,34 +31,28 @@ function UserSummonerPage(){
     const getUser = () => {
         axios.get(BACKEND_SUMMONER_INFO_URI)
             .then(res => {
+                console.log(res);
                 SetLevel(res.data['sum_info'].summonerLevel);
                 SetProfileIcon(`profileIcons/${res.data['sum_info'].profileIconId}.png`);
                 
-                
-                if (res.data['2'] === 1){ // TODO: edit logic 
-                    getRankedElo(res, 0)
-                } 
-                else{
-                    getFlexElo(res)
-                    getRankedElo(res, 1)
-                }
                 let helpBestChamp: ChampType[] = [];
                 let helpMasteryPoints: MasteryType[] = [];
                 for(let i = 0; i < res.data['best_champs'].length; i++){
                     helpBestChamp.push(res.data['best_champs'][i]);
                     helpMasteryPoints.push(res.data['mastery_points'][i]);
                 }
-                /*
                 SetChampAndMastery(() => helpBestChamp.reduce((acc: any, curr, index) => {
                     acc[curr] = helpMasteryPoints[index];
                     return acc;
                   }, {}));
-                */
-
-                  SetBestChamp(helpBestChamp);
-                  SetMasteryPoints(helpMasteryPoints);
-                  console.log(res.data['sum_info'].puuid);
-                //getLastGame(res.data['sum_info'].puuid, region, BACKEND_PORT);
+                
+                if (res.data['sum_ranked_stats']['0']['queueType'] === 'RANKED_SOLO_5x5'){ // TODO: edit logic 
+                    getRankedElo(res, 0)
+                } 
+                else{
+                    getFlexElo(res)
+                    getRankedElo(res, 1)
+                }
                 })
         }
     
@@ -106,32 +97,15 @@ function UserSummonerPage(){
                     <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
                 </div>
             </Parallax>
-            <Parallax className='image' bgImage={`splash/${bestChamp[0]}_0.jpg`} strength={800}>
-                <div className='content'>
-                    <span className='champ-name'>{bestChamp[0]}</span>
-                </div>
-            </Parallax>
-            <Parallax className='image' bgImage={`splash/${bestChamp[1]}_0.jpg`} strength={800}>
-                <div className='content'>
-                    <span className='champ-name'>{bestChamp[1]}</span>
-                </div>
-            </Parallax>
-            <Parallax className='image' bgImage={`splash/${bestChamp[2]}_0.jpg`} strength={800}>
-                <div className='content'>
-                    <span className='champ-name'>{bestChamp[2]}</span>
-                </div>
-            </Parallax>
-            <Parallax className='image' bgImage={`splash/${bestChamp[3]}_0.jpg`} strength={800}>
-                <div className='content'>
-                    <span className='champ-name'>{bestChamp[3]}</span>
-                </div>
-            </Parallax>
-            <Parallax className='image' bgImage={`splash/${bestChamp[4]}_0.jpg`} strength={800}>
-                <div className='content'>
-                    <span className='champ-name'>{bestChamp[4]}</span>
-                </div>
-            </Parallax>
-
+            <div>
+            {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
+                <Parallax className='image' bgImage={`splash/${champion}_0.jpg`} strength={800}>
+                    <div className='content'>
+                        <span className='champ-name'>{`${champion} \r ${masteryPoints}`}</span>
+                    </div>
+                </Parallax>
+            ))}
+            </div>
         </div>
     );
 }
