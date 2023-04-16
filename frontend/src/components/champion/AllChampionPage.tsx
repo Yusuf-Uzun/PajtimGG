@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import '../summoner/spage.css'
 
 function AllChampionPage(){
     const BACKEND_PORT = '3888';

@@ -5,7 +5,7 @@ html {
     -o-background-size: cover;
     background-size: cover;
 
-
+    display: flex;
 }
 
 
@@ -26,12 +26,12 @@ html {
 .SummonerData {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
 }
 
 .root {
-  justify-content: left;
+  justify-content: center;
 }
 
 .container {
