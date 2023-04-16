@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import './champpage.css'
 
 function AllChampionPage(){
     const BACKEND_PORT = '3888';
@@ -17,7 +18,7 @@ function AllChampionPage(){
         )
     }   
     return (
-        <div>
+        <div className='championpage'>
             {listChampions.map((champion) =>(
                 <div>
                 <h5 key={champion}>{champion}</h5>

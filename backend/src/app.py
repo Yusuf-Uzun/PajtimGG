@@ -44,3 +44,7 @@ async def get_summoner_rank(summoner_name: str, region: str):
 @app.get("/api/champions", tags=['Champion Data'])
 async def get_all_champions():
     return get_champions_data.get_all_champions()
+
+@app.get("/api/champion/{champ_id}", tags=['Champion Data'])
+async def get_champ_by_id(champ_id):
+    return get_summoner_data.get_champion_by_id(champ_id=champ_id)

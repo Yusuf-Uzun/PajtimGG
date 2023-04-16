@@ -46,13 +46,10 @@ function UserSummonerPage(){
                     return acc;
                   }, {}));
                 
-                if (res.data['sum_ranked_stats']['0']['queueType'] === 'RANKED_SOLO_5x5'){ // TODO: edit logic 
-                    getRankedElo(res, 0)
-                } 
-                else{
-                    getFlexElo(res)
-                    getRankedElo(res, 1)
-                }
+                  
+                
+                getFlexElo(res)
+                getRankedElo(res, 1)
                 })
         }
     
@@ -83,7 +80,7 @@ function UserSummonerPage(){
 
     return (
         <div>
-            <Parallax strength={800} className='SummonerData, container'>
+            <Parallax strength={200} className='SummonerData, container'>
                 <div>
                     <RefreshButton />
                 </div>
@@ -99,7 +96,7 @@ function UserSummonerPage(){
             </Parallax>
             <div>
             {Object.entries(champAndMastery).map(([champion, masteryPoints]) => (
-                <Parallax className='image' bgImage={`splash/${champion}_0.jpg`} strength={800}>
+                <Parallax className='image' bgImage={`splash/${champion}_0.jpg`} strength={500}>
                     <div className='content'>
                         <span className='champ-name'>{`${champion} \r ${masteryPoints}`}</span>
                     </div>
