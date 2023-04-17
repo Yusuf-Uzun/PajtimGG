@@ -85,11 +85,9 @@ function UserSummonerPage(){
                     <RefreshButton />
                 </div>
                 <div>   
-                    <h1>Summoner: <b className='important'>{summonerName}</b></h1>
+                    <h2><b className='important'>{summonerName}</b></h2>
                     <div>Level: {level}</div>
-                    <div className='pb'>
-                        <img src={profileIcon} width={100} height={100}/>
-                    </div>
+                    <img src={profileIcon} className='profileIconImg' width={100} height={100}/>
                     <div>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></div>  
                     <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
                 </div>
