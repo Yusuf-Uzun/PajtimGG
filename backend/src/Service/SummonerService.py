@@ -1,9 +1,8 @@
 # import numpy as np
 import pandas as pd
 import logging
-from watcher import watcher
-from get_match_data import get_champion_by_id
-
+from Information.watcher import watcher
+from Service.MatchService import get_champion_by_id
 # name = str(input())
 
 

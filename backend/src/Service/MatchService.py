@@ -3,10 +3,9 @@ import pandas as pd
 import urllib.request
 import json
 import logging
-from watcher import watcher
+from Information.watcher import watcher
 from constants import url_of_champ_data
-import app
-
+import app 
 
 def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')

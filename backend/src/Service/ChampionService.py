@@ -1,4 +1,4 @@
-from watcher import watcher
+from Information.watcher import watcher
 
 versions = watcher.data_dragon.versions_for_region('euw1')
 champions_version = versions['n']['champion']
@@ -8,6 +8,3 @@ def get_all_champions():
     for champion in champions:
         list_of_champs.append(champion)
     return list_of_champs
-
-test = get_all_champions()
-print('hello world')

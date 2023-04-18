@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Query
-import get_match_data
-import get_summoner_data
-import get_champions_data
-from fastapidesc import description, contract
+import Service.MatchService as get_match_data
+import Service.SummonerService as get_summoner_data
+import Service.ChampionService as get_champions_data
+from Information.fastapidesc import description, contract
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
