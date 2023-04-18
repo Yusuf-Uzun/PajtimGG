@@ -84,12 +84,18 @@ function UserSummonerPage(){
                 <div>
                     <RefreshButton />
                 </div>
-                <div>   
-                    <h2><b className='important'>{summonerName}</b></h2>
-                    <div>Level: {level}</div>
-                    <img src={profileIcon} className='profileIconImg' width={100} height={100}/>
-                    <div>Flex Elo: {flexElo}, {flexWinrate} <img src={flexIcon} /></div>  
-                    <div>Ranked Elo: {elo}, {winrate} <img src={rankedIcon} /></div>
+                    <div className='statsContainer'>
+                    <div>   
+                        <h2><b className='important'>{summonerName}</b></h2>
+                        <div className='Test'>
+                        <img src={profileIcon} className='profileIconImg' width={150} height={150}></img>
+                        </div>
+                        <div className='levelText'>{level}</div>
+                    </div>
+                    <div className='eloContainer'>
+                        <div><h4>Flex-Rangliste: {flexElo} {flexWinrate} <img src={flexIcon} width={100} height={100}/></h4></div>
+                        <div><h4>Solo-Rangliste: {elo} {winrate} <img src={rankedIcon} width={100} height={100}/></h4></div>
+                    </div>
                 </div>
             </Parallax>
             <div>

@@ -16,7 +16,7 @@ body {
   padding: 0;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -84,6 +84,7 @@ button:hover {
 .Search{
   flex-basis: 0;
   flex-grow: 2;
+  margin-left: 10em;
 }
 
 .title{
@@ -121,3 +122,8 @@ button:hover {
   color:white;
   justify-self: center;
 }
+
+.BodySearch {
+  width: fit-content;
+}
+

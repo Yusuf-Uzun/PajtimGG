@@ -54,13 +54,17 @@ function searchForSummoner() {
                     variant="standard"
                     onChange={e => SetSummonerName(e.target.value)} 
                     value={SummonerName}
+                    style = {{width: '40em'}}
                 />
             </div>
             <div className="Search">
             <a href={`http://localhost:${FRONTEND_PORT}/#/summoners/${selectedRegion}/${SummonerName}`}>
-                <Button variant="contained" onClick={() => InputIsCorrect(SummonerName, selectedRegion)}>Search</Button>
+                <Button 
+                    variant="contained" 
+                    onClick={() => InputIsCorrect(SummonerName, selectedRegion)}
+                    style={{marginTop: '1em'}}>Search</Button>
             </a>
-                <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <FormControl sx={{ m: 1, minWidth: 120, marginTop: '1em'}} size="small">
                 <InputLabel id="chooseRegion">Region</InputLabel>
                 <Select
                     labelId="chooseRegion"

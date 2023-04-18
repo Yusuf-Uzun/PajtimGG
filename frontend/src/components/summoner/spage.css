@@ -8,8 +8,6 @@ html {
 
 }
 
-
-
 .animation{
   animation: zoom move 1s;
 }
@@ -26,20 +24,23 @@ html {
 .SummonerData {
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: left;
+  justify-content: center;
+  align-items: center;
   height: 120vh;
   width: 100%;
 }
 
 .root {
-  justify-content: left;
+  justify-content: center;
   size: 100%;
 }
 
 .container {
   /*background-color:rgba(44, 70, 114, 0.3);*/
   /*background-color:rgba(36, 50, 74, 0.3);*/
+  display: flex;
+  flex-basis: 30em;
+  justify-content: center;
   background-color:rgba(128, 128, 128, 0.3);
   opacity: 100%;
   padding: 50px;
@@ -63,7 +64,7 @@ h5 {
   font-size: 1.5em;
 }
 
-h1 {
+h2 {
   font-weight: 100;
 }
 
@@ -94,4 +95,33 @@ h1 {
 
 .profileIconImg {
   border-radius: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5em;
+  height: 5em;
+  background-color: white;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.level {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.statsContainer {
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+}
+
+.levelText {
+  color: aliceblue;
+  margin-left: 3.5em;
 }
