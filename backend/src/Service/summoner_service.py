@@ -2,7 +2,7 @@
 import pandas as pd
 import logging
 from Information.watcher import watcher
-from Service.MatchService import get_champion_by_id
+from Service.match_service import get_champion_by_id
 # name = str(input())
 
 
