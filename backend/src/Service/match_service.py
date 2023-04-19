@@ -5,7 +5,6 @@ import json
 import logging
 from Information.watcher import watcher
 from constants import url_of_champ_data
-import app 
 
 def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')
@@ -93,18 +92,19 @@ def get_last_match_participants(puuid: str, region: str):
     for participants in last_match['metadata']['participants']:
         last_match_participants_puuid[anz] = participants
         last_match_participants[anz] = watcher.summoner.by_puuid(region=region,
-                                                                 encrypted_puuid=last_match_participants_puuid[anz])
+                                                                 encrypted_puuid=
+                                                                 last_match_participants_puuid[anz])
         anz += 1
     return last_match_participants
 
 
 def get_last_match_participants_name(puuid: str, region: str):
     logging.info('Loading the names of the participants of last the last game')
-    list_of_last_match_participants_info = get_last_match_participants(puuid=puuid, region=region)
+    match_participants_info = get_last_match_participants(puuid=puuid, region=region)
     last_match_participants_name = {}
     anz = 0
-    for participants in list_of_last_match_participants_info:
-        last_match_participants_name[anz] = list_of_last_match_participants_info[participants]['name']
+    for participants in match_participants_info:
+        last_match_participants_name[anz] = match_participants_info[participants]['name']
         anz += 1
     return last_match_participants_name
 
