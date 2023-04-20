@@ -79,7 +79,7 @@ function UserSummonerPage(){
     }
 
     return (
-        <div>
+        <>
             <Parallax strength={200} className='SummonerData, container'>
                 <div>
                     <RefreshButton />
@@ -107,7 +107,7 @@ function UserSummonerPage(){
                 </Parallax>
             ))}
             </div>
-        </div>
+        </>
     );
 }
 export default UserSummonerPage;

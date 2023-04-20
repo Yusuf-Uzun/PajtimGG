@@ -1,4 +1,4 @@
-description = """
+DESCRIPTION = """
 Pajtim.gg API helps you to get your League of Legends statistics. 🚀
 
 ## Note

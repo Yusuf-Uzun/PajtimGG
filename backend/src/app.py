@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 import Service.match_service as get_match_data
 import Service.summoner_service as get_summoner_data
 import Service.champion_service as get_champions_data
-from Information.fastapidesc import description, contract
-from fastapi.middleware.cors import CORSMiddleware
+from Information.fastapidesc import DESCRIPTION, contract
 
 app = FastAPI(
     title='Pajtim.gg',
-    description=description,
+    description=DESCRIPTION,
     contact=contract,
 )
 app.add_middleware(
@@ -46,7 +46,7 @@ async def get_summoner_mastery_stats(summoner_id: str, region: str = Query("regi
 
 @app.get("/api/get_summoner_rank/{region}/{summoner_name}", tags=["Summoner Info"])
 async def get_summoner_rank(summoner_name: str, region: str):
-   return get_summoner_data.get_summoner_rank(summoner_name=summoner_name,
+    return get_summoner_data.get_summoner_rank(summoner_name=summoner_name,
                                                 region=region)
 
 @app.get("/api/champions", tags=['Champion Data'])

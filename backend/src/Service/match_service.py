@@ -1,10 +1,10 @@
 # import numpy as np
-import pandas as pd
-import urllib.request
 import json
 import logging
+import urllib.request
+import pandas as pd
 from Information.watcher import watcher
-from constants import url_of_champ_data
+from constants import URL_OF_CHAMP_DATA
 
 def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')
@@ -28,7 +28,7 @@ def get_last_game_banned_champs(puuid: str, region: str):
     df_last_match_detail = pd.DataFrame.from_dict(last_match_detail)
     dict_get_ban_info_list = df_last_match_detail.loc['teams', 'info']
     banned_champs = []
-    for items in dict_get_ban_info_list:  # TODO: 4 for-schleifen bissle runter kürzen
+    for items in dict_get_ban_info_list:
         for bans in items['bans']:
             for check_if_champ in list_of_all_champion.values():
                 if check_if_champ == bans['championId']:
@@ -39,7 +39,7 @@ def get_last_game_banned_champs(puuid: str, region: str):
 
 def all_champion_name_id_sorted():
     logging.info('Loading ddragon champion.json from url')
-    with urllib.request.urlopen(url_of_champ_data) as url:
+    with urllib.request.urlopen(URL_OF_CHAMP_DATA) as url:
         url_data = json.load(url)
         logging.info('champion.json loaded')
         df_url_data = pd.DataFrame.from_dict(url_data)
@@ -55,7 +55,7 @@ def all_champion_name_id_sorted():
         logging.info('Creating a sorted dict of all champions by ID')
         sorted_dict = {}
         for value in sorted_values:
-            for key in champ_list:
+            for key in champ_list.items():
                 if champ_list[key] == value:
                     sorted_dict[key] = int(value)
     return sorted_dict
@@ -69,6 +69,7 @@ def get_champion_by_id(champ_id):
     for value in all_champs_dict.values():
         if value == champ_id:
             return [key for key, val in all_champs_dict.items() if val == value]
+    return 'Teemo' # Easter Egg, if nothing is found
 
 
 
@@ -112,7 +113,6 @@ def get_last_20_matches_info(puuid: str, region: str):
     logging.info('Loading last 20 matches')
     last_match_ids = watcher.match.matchlist_by_puuid(region=region, puuid=puuid)
     all_info = {}
-    #one_info = {}
     anz = 0
     for match_id in last_match_ids:
         all_info[anz] = watcher.match.by_id(region=region, match_id=match_id)['info']
