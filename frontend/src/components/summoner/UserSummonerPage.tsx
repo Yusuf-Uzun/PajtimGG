@@ -46,9 +46,6 @@ function UserSummonerPage(){
                     acc[curr] = helpMasteryPoints[index];
                     return acc;
                   }, {}));
-                
-                  
-                
                 getFlexElo(res)
                 getRankedElo(res, 1)
                 })

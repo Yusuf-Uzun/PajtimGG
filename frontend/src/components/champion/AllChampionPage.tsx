@@ -7,6 +7,7 @@ function AllChampionPage(){
     const BACKEND_PORT = '3888';
     const BACKEND_ALL_CAMP_URI = `http://localhost:${BACKEND_PORT}/api/champions`;
     const [listChampions, SetListChampions] = useState([]);
+    
     useEffect(() => {
         get_champions();
     }, [])  

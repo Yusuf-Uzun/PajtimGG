@@ -14,7 +14,6 @@ interface Summoner {
 
 function NoRegionSummoner(){
     const { summonerName } = useParams();
-
     const [dictOfSummoner, SetDictOfSummoner] = useState<Summoner[]>([]);
     const [region, SetRegion] = useState('');
     
