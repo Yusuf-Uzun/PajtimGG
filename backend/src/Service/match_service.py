@@ -55,7 +55,7 @@ def all_champion_name_id_sorted():
         logging.info('Creating a sorted dict of all champions by ID')
         sorted_dict = {}
         for value in sorted_values:
-            for key in champ_list.items():
+            for key in champ_list:
                 if champ_list[key] == value:
                     sorted_dict[key] = int(value)
     return sorted_dict

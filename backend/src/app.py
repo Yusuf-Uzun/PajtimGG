@@ -56,3 +56,7 @@ async def get_all_champions():
 @app.get("/api/champion/{champ_id}", tags=['Champion Data'])
 async def get_champ_by_id(champ_id):
     return get_summoner_data.get_champion_by_id(champ_id=champ_id)
+
+@app.get("/api/summoners/{summoner_name}", tags=["Summoner Info"])
+async def get_no_region_selected(summoner_name):
+    return get_summoner_data.summoner_name_in_all_regions(summoner_name=summoner_name)

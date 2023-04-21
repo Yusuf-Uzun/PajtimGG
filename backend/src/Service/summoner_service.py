@@ -29,6 +29,13 @@ def get_summoner_rank(summoner_name, region):
 
     return ranks_by_season
 
+def summoner_name_in_all_regions(summoner_name):
+    regions = ['EUW1', 'NA1']
+    for region in regions:
+        summoners = watcher.summoner.by_name(summoner_name=summoner_name, region=region)
+        yield {"name" : summoners['name'], "profileIconId": summoners['profileIconId'], "region": region} 
+
+
 # leagueId, queueType, tier, rank, summonerId, summonerName, leaguePoints, wins, losses,
 # veteran, inactive, freshBlood, hotStreak
 def get_summoner_ranked_stats(summoner_id: str, region: str):
