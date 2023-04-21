@@ -11,6 +11,7 @@ import {
     TextField, 
     SelectChangeEvent,
 } from '@mui/material';
+import PajtimGGPic from "../summoner/PajtimGGPic";
 
 
 function searchForSummoner() {
@@ -25,10 +26,6 @@ function searchForSummoner() {
     function InputIsCorrect(SummonerName: string, selectedRegion: string): boolean {
         if (isEmptyOrSpaces(SummonerName) && selectedRegion === ''){
             alert('Choose a region and your Summoner Name');
-            return false;
-        }
-        else if (selectedRegion === ''){
-            alert('Choose a region');
             return false;
         }
         else if (isEmptyOrSpaces(SummonerName)){
@@ -82,9 +79,7 @@ function searchForSummoner() {
                 </FormControl>
             </div>
             <div>
-                <a href="http://localhost:5173/">
-                    <img src="PajtimGG2.png" height={"20px"} width={"80px"}></img>
-                </a>
+                <PajtimGGPic />
             </div>
         </div>
     );

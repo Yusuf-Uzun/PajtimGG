@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import './champpage.css'
+import PajtimGGPic from "../summoner/PajtimGGPic";
 
 function AllChampionPage(){
     const BACKEND_PORT = '3888';
@@ -18,15 +19,20 @@ function AllChampionPage(){
         )
     }   
     return (
-        <div className='championpage'>
-            {listChampions.map((champion) =>(
-                <div>
-                <h5 key={champion}>{champion}</h5>
-                <img src={`championIcons/${champion}.png`} title={`${champion}`}
-                    alt={`${champion}`}></img>
-                </div>
-            ))}
-        </div>
+        <>
+            <div>
+                <PajtimGGPic />
+            </div>
+            <div className='championpage'>
+                {listChampions.map((champion) =>(
+                    <div>
+                    <h5 key={champion}>{champion}</h5>
+                    <img src={`championIcons/${champion}.png`} title={`${champion}`}
+                        alt={`${champion}`}></img>
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }
 export default AllChampionPage

@@ -1,0 +1,27 @@
+.data_table td {
+    border-bottom: 1px solid #DDD;
+    font-size: 13px;
+    padding: 7px 7px;
+    position: relative;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.data_table th {
+    border-top: 2px solid #DDD;
+    border-bottom: 2px solid #DDD;
+    font-size: 15px;
+    color: #777;
+    background: #FFF !important;
+    text-align: center;
+}

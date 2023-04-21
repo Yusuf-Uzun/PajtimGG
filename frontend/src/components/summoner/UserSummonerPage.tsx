@@ -5,6 +5,7 @@ import axios from 'axios';
 import Logo from './Logo';
 import RefreshButton from './RefreshButton';
 import { Parallax } from 'react-parallax';
+import PajtimGGPic from './PajtimGGPic';
 
 type ChampType = string;
 type MasteryType = number;
@@ -95,6 +96,7 @@ function UserSummonerPage(){
                     <div className='eloContainer'>
                         <div><h4>Flex-Rangliste: {flexElo} {flexWinrate} <img src={flexIcon} width={100} height={100}/></h4></div>
                         <div><h4>Solo-Rangliste: {elo} {winrate} <img src={rankedIcon} width={100} height={100}/></h4></div>
+                        <PajtimGGPic />
                     </div>
                 </div>
             </Parallax>
