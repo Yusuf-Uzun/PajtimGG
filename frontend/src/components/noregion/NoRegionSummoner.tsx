@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom";
 import './noregionsum.css';
+import { LOCALHOST_URL, BACKEND_PORT, FRONTEND_PORT } from "../Constants";
 
 type RegionType = string;
 type ProfileIconType = number;
@@ -18,20 +19,27 @@ function NoRegionSummoner(){
     const [region, SetRegion] = useState('');
     
     useEffect(() => {
-        axios.get(`http://localhost:3888/api/summoners/${summonerName}`)
-            .then(res => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`${LOCALHOST_URL}${BACKEND_PORT}/api/summoners/${summonerName}`);
                 const summonerArray: Summoner[] = res.data.map((summonerData: any) => {
                     const summoner: Summoner = {
-                      name: summonerData.name,
-                      profileIconId: summonerData.profileIconId,
-                      region: summonerData.region,
+                        name: summonerData.name,
+                        profileIconId: summonerData.profileIconId,
+                        region: summonerData.region,
                     };
                     return summoner;
-                  });
-                SetDictOfSummoner(summonerArray);    
+                });
+                SetDictOfSummoner(summonerArray);
                 SetRegion(region);
-            })
-    }, [])
+            } catch (error) {
+                // Handle error
+            }
+        }
+    
+        fetchData();
+    }, []);
+    
 
     return(
         <tbody>
@@ -39,7 +47,7 @@ function NoRegionSummoner(){
                 {dictOfSummoner.map((summoner) => (
                     <div>
                         <tr>
-                            <a href={`http://localhost:5173/#/summoners/${summoner.region}/${summonerName}`}>
+                            <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/#/summoners/${summoner.region}/${summonerName}`}>
                                 <td>{summoner.region}</td>
                                 <td> <img className="multipleIcons" 
                                     src={`profileIcons/${summoner.profileIconId}.png`} 

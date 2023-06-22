@@ -1,5 +1,6 @@
 import FPage from './FPage'
 import GetSummonerName from './seachForSummoner';
+import { LOCALHOST_URL, FRONTEND_PORT } from '../Constants';
 
 function HomePage() {
   return (
@@ -12,7 +13,7 @@ function HomePage() {
           <GetSummonerName />
           </div>
           <div>
-                <a href="http://localhost:5173/#/champions">
+                <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/#/champions`}>
                     <h4>All Champions</h4>
                 </a>
             </div>

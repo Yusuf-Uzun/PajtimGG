@@ -12,13 +12,13 @@ import {
     SelectChangeEvent,
 } from '@mui/material';
 import PajtimGGPic from "../summoner/PajtimGGPic";
+import { LOCALHOST_URL, FRONTEND_PORT } from "../Constants";
 
 
 function searchForSummoner() {
     const [SummonerName, SetSummonerName] = useState('');
     const [selectedRegion, setSelectedRegion] = useState('');
 
-    const FRONTEND_PORT = "5173";
     function isEmptyOrSpaces(str: string): boolean{
         return str === null || str.match(/^ *$/) !== null;
     }
@@ -55,7 +55,7 @@ function searchForSummoner() {
                 />
             </div>
             <div className="Search">
-            <a href={`http://localhost:${FRONTEND_PORT}/#/summoners/${selectedRegion}/${SummonerName}`}>
+            <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/#/summoners/${selectedRegion}/${SummonerName}`}>
                 <Button 
                     variant="contained" 
                     onClick={() => InputIsCorrect(SummonerName, selectedRegion)}

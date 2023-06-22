@@ -6,6 +6,7 @@ import Logo from './Logo';
 import RefreshButton from './RefreshButton';
 import { Parallax } from 'react-parallax';
 import PajtimGGPic from './PajtimGGPic';
+import { LOCALHOST_URL, BACKEND_PORT } from '../Constants';
 
 type ChampType = string;
 type MasteryType = number;
@@ -21,38 +22,38 @@ function UserSummonerPage(){
     const [elo, SetElo] = useState('');
     const [winrate, SetWinrate] = useState('');
     const [champAndMastery, SetChampAndMastery] = useState({});
-
-
-    const BACKEND_PORT = "3888";
-    const BACKEND_SUMMONER_INFO_URI = `http://localhost:${BACKEND_PORT}/summoners/${region}/${summonerName}`
     
     useEffect(() => {
         getUser();
     }, [])
-    const getUser = () => {
-        axios.get(BACKEND_SUMMONER_INFO_URI)
-            .then(res => {
-                console.log(res);
-                SetLevel(res.data['sum_info'].summonerLevel);
-                SetProfileIcon(`profileIcons/${res.data['sum_info'].profileIconId}.png`);
-                
-                let helpBestChamp: ChampType[] = [];
-                let helpMasteryPoints: MasteryType[] = [];
-                for(let i = 0; i < res.data['best_champs'].length; i++){
-                    helpBestChamp.push(res.data['best_champs'][i]);
-                    helpMasteryPoints.push(res.data['mastery_points'][i]);
-                }
-                SetChampAndMastery(() => helpBestChamp.reduce((acc: any, curr, index) => {
-                    acc[curr] = helpMasteryPoints[index];
-                    return acc;
-                  }, {}));
-                getFlexElo(res)
-                getRankedElo(res, 1)
-                })
+    const getUser = async () => {
+        try {
+            const res = await axios.get(`${LOCALHOST_URL}${BACKEND_PORT}/summoners/${region}/${summonerName}`);
+            console.log(res);
+            SetLevel(res.data['sum_info'].summonerLevel);
+            SetProfileIcon(`profileIcons/${res.data['sum_info'].profileIconId}.png`);
+    
+            let helpBestChamp: ChampType[] = [];
+            let helpMasteryPoints: MasteryType[] = [];
+            for (let i = 0; i < res.data['best_champs'].length; i++) {
+                helpBestChamp.push(res.data['best_champs'][i]);
+                helpMasteryPoints.push(res.data['mastery_points'][i]);
+            }
+            SetChampAndMastery(() => helpBestChamp.reduce((acc: any, curr, index) => {
+                acc[curr] = helpMasteryPoints[index];
+                return acc;
+            }, {}));
+            
+            await getFlexElo(res);
+            await getRankedElo(res, 1);
+        } catch (error) {
+            // Handle error
         }
+    }
+    
     
 
-    function getFlexElo(res: any){
+    async function getFlexElo(res: any){
         let flexRank: string = res.data['sum_ranked_stats']['0']['tier']
         SetFlexElo(flexRank + " " + res.data['sum_ranked_stats']['0']['rank'] + " " + 
         res.data['sum_ranked_stats']['0']['leaguePoints'] + " LP")
@@ -64,7 +65,7 @@ function UserSummonerPage(){
         SetFlexWinrate(wins + "W " + losses + "L Winrate " + winrateCalc + "%")
     }
 
-    function getRankedElo(res: any, idx: number){
+    async function getRankedElo(res: any, idx: number){
         let rankedRank: string = res.data['sum_ranked_stats'][idx]['tier']
         SetElo(res.data['sum_ranked_stats'][idx]['tier'] + " " + res.data['sum_ranked_stats']['1']['rank'] + " " + 
         res.data['sum_ranked_stats'][idx]['leaguePoints'] + " LP")
