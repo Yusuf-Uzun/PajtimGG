@@ -5,7 +5,7 @@ learn TypeScript and React.
 
 ## What I used for the Software Architecture
 ### Backend 
-Python, Uvicorn with FastAPI, LolWatcher
+Python, Uvicorn with FastAPI, LolWatcher, PyLint
 ### Frontend
 Vite, React, TypeScript, EsLint, Prettier, CSS, MUI, Axios
 

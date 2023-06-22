@@ -4,5 +4,124 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+
+}
+
+.animation{
+  animation: zoom move 1s;
+}
+
+@keyframes zoom {
+  0% {
+      transform:scale(200%);
   }
-  
+  100%{
+      transform:scale(100%);
+  }
+}
+
+.SummonerData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  width: 100%;
+}
+
+.root {
+  justify-content: center;
+  size: 100%;
+}
+
+.container {
+  /*background-color:rgba(44, 70, 114, 0.3);*/
+  /*background-color:rgba(36, 50, 74, 0.3);*/
+  display: flex;
+  flex-basis: 30em;
+  justify-content: center;
+  background-color:rgba(128, 128, 128, 0.3);
+  opacity: 100%;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+.pb {
+  width: 100px;
+  height: 100px;
+  justify-content: right;
+
+}
+
+h5 {
+  font-size: 1.5em;
+  font-weight: 100;
+}
+
+.important {
+  font-weight: 400;
+  font-size: 1.5em;
+}
+
+h2 {
+  font-weight: 100;
+}
+
+.image {
+  position: relative;
+  height: 100vh;
+  width: 200vh;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 120vh;
+  width: 100%;
+}
+
+.content span.champ-name {
+  font-size: '.8em';
+  background-color: rgba(128, 128, 128, 0.3);
+  text-transform: uppercase;
+  color: #fff;
+  padding: 1rem; 
+  font-size: 1.5rem;
+  letter-spacing: 10px;
+}
+
+.profileIconImg {
+  border-radius: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5em;
+  height: 5em;
+  background-color: white;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.level {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 2;
+}
+
+.statsContainer {
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+}
+
+.levelText {
+  color: aliceblue;
+  margin-left: 3.5em;
+}
