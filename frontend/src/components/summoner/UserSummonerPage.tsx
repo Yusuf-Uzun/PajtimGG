@@ -8,6 +8,9 @@ import { Parallax } from 'react-parallax';
 import PajtimGGPic from './PajtimGGPic';
 import { LOCALHOST_URL, BACKEND_PORT } from '../Constants';
 
+import { QUEUE_TYPE_FLEX, QUEUE_TYPE_SOLO } from '../Constants';
+import { stat } from 'fs';
+
 type ChampType = string;
 type MasteryType = number;
 
@@ -29,7 +32,6 @@ function UserSummonerPage(){
     const getUser = async () => {
         try {
             const res = await axios.get(`${LOCALHOST_URL}${BACKEND_PORT}/summoners/${region}/${summonerName}`);
-            console.log(res);
             SetLevel(res.data['sum_info'].summonerLevel);
             SetProfileIcon(`profileIcons/${res.data['sum_info'].profileIconId}.png`);
     
@@ -44,8 +46,7 @@ function UserSummonerPage(){
                 return acc;
             }, {}));
             
-            await getFlexElo(res);
-            await getRankedElo(res, 1);
+            await getElo(res);
         } catch (error) {
             // Handle error
         }
@@ -53,30 +54,31 @@ function UserSummonerPage(){
     
     
 
-    async function getFlexElo(res: any){
-        let flexRank: string = res.data['sum_ranked_stats']['0']['tier']
-        SetFlexElo(flexRank + " " + res.data['sum_ranked_stats']['0']['rank'] + " " + 
-        res.data['sum_ranked_stats']['0']['leaguePoints'] + " LP")
-        flexRank = flexRank.toLowerCase()
-        SetFlexIcon(`rankedIcons/${flexRank}.png`);
-        const wins = res.data['sum_ranked_stats']['0']['wins']
-        const losses = res.data['sum_ranked_stats']['0']['losses']
-        const winrateCalc = ((wins/(wins+ losses))*100).toFixed(0);
-        SetFlexWinrate(wins + "W " + losses + "L Winrate " + winrateCalc + "%")
-    }
+    async function getElo(res: any){
+        let rank: string = res.data['sum_ranked_stats']['0']['tier']
+        const sum_ranked_stats = res.data.sum_ranked_stats;
 
-    async function getRankedElo(res: any, idx: number){
-        let rankedRank: string = res.data['sum_ranked_stats'][idx]['tier']
-        SetElo(res.data['sum_ranked_stats'][idx]['tier'] + " " + res.data['sum_ranked_stats']['1']['rank'] + " " + 
-        res.data['sum_ranked_stats'][idx]['leaguePoints'] + " LP")
-        rankedRank = rankedRank.toLowerCase()
-        SetRankedIcon(`rankedIcons/${rankedRank}.png`);
-        const wins = res.data['sum_ranked_stats'][idx]['wins']
-        const losses = res.data['sum_ranked_stats'][idx]['losses']
-        const winrateCalc = ((wins/(wins+ losses))*100).toFixed(0);
-        SetWinrate(wins + "W " + losses + "L Winrate " + winrateCalc + "%")
-    }
+        for (const stats of sum_ranked_stats) {
+            if (stats.queueType === "RANKED_SOLO_5x5") {
+                SetElo(`${stats.tier}  ${stats.rank}`);
+                const eloForIcon = stats.tier.toLocaleLowerCase();
+                SetRankedIcon(`rankedIcons/${eloForIcon}.png`);
+                const wins = stats.wins;
+                const losses = stats.losses;
+                const winrateCalc = ((wins/(wins+ losses))*100).toFixed(0);
+                SetWinrate(`${wins}W  ${losses}L Winrate ${winrateCalc}%`)
 
+            } else if (stats.queueType === "RANKED_FLEX_SR") {
+                SetFlexElo(`${stats.tier}  ${stats.rank}`);
+                const flexEloForIcon = stats.tier.toLocaleLowerCase();
+                SetFlexIcon(`rankedIcons/${flexEloForIcon}.png`);
+                const wins = stats.wins;
+                const losses = stats.losses;
+                const winrateCalc = ((wins/(wins+ losses))*100).toFixed(0);
+                SetFlexElo(`${wins}W  ${losses}L Winrate ${winrateCalc}%`)
+            }
+          }
+    }
     return (
         <>
             <Parallax strength={200} className='SummonerData, container'>
