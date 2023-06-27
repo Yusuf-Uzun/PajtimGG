@@ -13,7 +13,7 @@ function HomePage() {
           <GetSummonerName />
           </div>
           <div>
-                <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/#/champions`}>
+                <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/champions`}>
                     <h4>All Champions</h4>
                 </a>
             </div>

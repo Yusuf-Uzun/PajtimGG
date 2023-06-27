@@ -55,7 +55,7 @@ function searchForSummoner() {
                 />
             </div>
             <div className="Search">
-            <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/#/summoners/${selectedRegion}/${SummonerName}`}>
+            <a href={`${LOCALHOST_URL}${FRONTEND_PORT}/summoners/${selectedRegion}/${SummonerName}`}>
                 <Button 
                     variant="contained" 
                     onClick={() => InputIsCorrect(SummonerName, selectedRegion)}
