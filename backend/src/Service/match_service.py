@@ -4,7 +4,11 @@ import logging
 import urllib.request
 import pandas as pd
 from Information.watcher import watcher
-from constants import URL_OF_CHAMP_DATA
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+URL_OF_CHAMP_DATA = os.getenv('URL_OF_CHAMP_DATA')
 
 def get_last_match_data(puuid: str, region: str):
     logging.info('Loading all match of player')
