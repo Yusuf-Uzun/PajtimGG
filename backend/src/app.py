@@ -18,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# SKRRR
 @app.get("/summoners/{region}/{summoner_name}", tags=["Summoner Info"])
 async def get_summoner_info(summoner_name: str, region: str =
                             Query("region", enum=["EUW1", "NA1"])):
