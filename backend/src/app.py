@@ -6,7 +6,7 @@ import Service.champion_service as get_champions_data
 from Information.fastapidesc import DESCRIPTION, contract
 
 app = FastAPI(
-    title='Pajtim.gg',
+    title='Pajtim.gg ist die beste App',
     description=DESCRIPTION,
     contact=contract,
 )
